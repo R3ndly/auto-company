@@ -3,10 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\StudentController;
-use App\Http\Controllers\PrepodController;
+use App\Http\Controllers\GarageController;
 
 Route::resource('students', StudentController::class);
-Route::resource('prepods', PrepodController::class);
+
+Route::resource('garages', GarageController::class);
 
 
 Route::get('/', [MainController::class, 'home'])->name('home');

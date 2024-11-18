@@ -1,66 +1,66 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Models\Student;
+use App\Models\Garage;
 use Illuminate\Http\Request;
 use App\Exports\StudentExport;
 use Maatwebsite\Excel\Facades\Excel;
 
-class StudentController extends Controller
+class GarageController extends Controller
 {
     public function index()
     {
-        $students = Student::paginate(10);
-        return view('students.index', compact('students'));
+        $garages = Garage::paginate(10);
+        return view('garages.index', compact('garages'));
     }
 
     public function create()
     {
-        return view('students.create');
+        return view('garages.create');
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'surname' => 'required|string|max:255',
-            'patronymic' => 'nullable|string|max:255',
-            'age' => 'required|integer',
-            'phone' => 'nullable|string|max:15',
-            'group' => 'nullable|string|max:50',
-            'average_score' => 'nullable|numeric|min:0|max:100',
+            'Type_failure' => 'required',
+            'Type_of_spare_part' => 'required',
+            'Spare_part_price' => 'required',
+            'Repair_start_date' => 'required',
+            'Repair_end_date' => 'required',
         ]);
 
-        Student::create($request->all());
-        return redirect()->route('students.index')->with('success', 'Студент успешно добавлен.');
+        Garage::create($request->all());
+        return redirect()->route('garages.index')->with('success', 'Гараж успешно добавлен.');
     }
 
-    public function edit(Student $student)
+    public function edit(Garage $garage)
     {
-        return view('students.edit', compact('student'));
+        return view('garages.edit', compact('garage'));
     }
 
-    public function update(Request $request, Student $student)
+    public function update(Request $request, Garage $garage)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'surname' => 'required|string|max:255',
-            // другие валидации
+            'Type_failure' => 'required',
+            'Type_of_spare_part' => 'required',
+            'Spare_part_price' => 'required',
+            'Repair_start_date' => 'required',
+            'Repair_end_date' => 'required',
         ]);
 
-        $student->update($request->all());
-        return redirect()->route('students.index')->with('success', 'Студент успешно обновлён.');
+        $garage->update($request->all());
+        return redirect()->route('garages.index')->with('success', 'Гараж успешно обновлён.');
     }
 
-    public function destroy(Student $student)
+    public function destroy(Garage $garage)
     {
         $student->delete();
-        return redirect()->route('students.index')->with('success', 'Студент успешно удалён.');
+        return redirect()->route('garages.index')->with('success', 'Гараж успешно удалён.');
     }
 
     public function exportExcel() 
     {
-        return Excel::download(new StudentExport, 'students.xlsx');
+        return Excel::download(new StudentExport, 'garages.xlsx');
     }
 
     public function exportTXT()
@@ -72,7 +72,7 @@ class StudentController extends Controller
 
     public function exportCSV()
     {
-       return Excel::download(new StudentExport, 'students.csv');
+       return Excel::download(new StudentExport, 'garages.csv');
     } 
 
 }
