@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<h1>Список студентов</h1>
+<h1>Список гаражей</h1>
 <a href="{{ route('garages.create') }}">Добавить гараж</a>
 <button>
     <a href="/student/export">Дамб В Excel</a>
@@ -50,5 +50,5 @@
     </tbody>
 </table>
 
-{{ $students->links() }} <!-- Пагинация -->
+{{ $garages->links() }} <!-- Пагинация -->
 @endsection

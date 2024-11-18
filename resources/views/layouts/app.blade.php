@@ -10,11 +10,11 @@
     <nav>
         <ul>
             <li><a href="{{ route('garages.index') }}">Гараж</a></li>
-            <li><a href="{{ route('prepods.index') }}">Автомобили</a></li>
-            <li><a href="{{ route('prepods.index') }}">Диспетчерская</a></li>
-            <li><a href="{{ route('prepods.index') }}">Водители</a></li>
-            <li><a href="{{ route('prepods.index') }}">Товар</a></li>
-            <li><a href="{{ route('prepods.index') }}">Маршрут</a></li>
+            <li><a href="{{ route('cars.index') }}">Автомобили</a></li>
+            <li><a href="{{ route('controlls.index') }}">Диспетчерская</a></li>
+            <li><a href="{{ route('drivers.index') }}">Водители</a></li>
+            <li><a href="{{ route('products.index') }}">Товар</a></li>
+            <li><a href="{{ route('travels.index') }}">Маршрут</a></li>
             <li><a href="{{ route('home') }}">главная</a></li>
             <li><a href="{{ route('about') }}">О нас</a></li>
             <li><a href="{{ route('contact') }}">Контакты</a></li>

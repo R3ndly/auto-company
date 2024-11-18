@@ -54,7 +54,7 @@ class GarageController extends Controller
 
     public function destroy(Garage $garage)
     {
-        $student->delete();
+        $garage->delete();
         return redirect()->route('garages.index')->with('success', 'Гараж успешно удалён.');
     }
 
