@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Travel extends Model
 {
     protected $table = 'travels';
+    protected $primaryKey = 'Travel_code';
+    public $timestamps = false;
     protected $fillable = [
         'Travel_code',
         'Destination',

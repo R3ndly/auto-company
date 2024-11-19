@@ -3,7 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Controll;
 use Illuminate\Http\Request;
-use App\Exports\StudentExport;
+use App\Exports\ControllExport;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ControllController extends Controller
@@ -60,19 +60,19 @@ class ControllController extends Controller
 
     public function exportExcel() 
     {
-        return Excel::download(new StudentExport, 'controlls.xlsx');
+        return Excel::download(new ControllExport, 'controlls.xlsx');
     }
 
     public function exportTXT()
     {
-        $filed = "save.txt";
-        $rows = (new StudentExport())->collection();
+        $filed = "controlls.txt";
+        $rows = (new ControllExport())->collection();
         file_put_contents($filed, $rows);
     }
 
     public function exportCSV()
     {
-       return Excel::download(new StudentExport, 'controlls.csv');
+       return Excel::download(new ControllExport, 'controlls.csv');
     } 
 
 }

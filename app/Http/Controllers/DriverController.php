@@ -3,7 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Driver;
 use Illuminate\Http\Request;
-use App\Exports\StudentExport;
+use App\Exports\DriverExport;
 use Maatwebsite\Excel\Facades\Excel;
 
 class DriverController extends Controller
@@ -60,19 +60,19 @@ class DriverController extends Controller
 
     public function exportExcel() 
     {
-        return Excel::download(new StudentExport, 'drivers.xlsx');
+        return Excel::download(new DriverExport, 'drivers.xlsx');
     }
 
     public function exportTXT()
     {
         $filed = "drivers.txt";
-        $rows = (new StudentExport())->collection();
+        $rows = (new DriverExport())->collection();
         file_put_contents($filed, $rows);
     }
 
     public function exportCSV()
     {
-       return Excel::download(new StudentExport, 'drivers.csv');
+       return Excel::download(new DriverExport, 'drivers.csv');
     } 
 
 }

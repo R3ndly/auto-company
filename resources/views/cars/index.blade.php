@@ -2,15 +2,21 @@
 
 @section('content')
 <h1>Список машин</h1>
-<a href="{{ route('cars.create') }}">Добавить гараж</a>
+<a href="{{ route('cars.create') }}">Добавить</a>
 <button>
-    <a href="/student/export">Дамб В Excel</a>
+    <a href="/car/export">Дамб В Excel</a>
 </button>
 <button>
-    <a href="/student/exportTXT">Дамб В txt</a>
+    <a href="/car/exportTXT">Дамб В txt</a>
 </button>
 <button>
-    <a href="/student/exportCSV">Дамб В CSV</a>
+    <a href="/car/exportCSV">Дамб В CSV</a>
+</button>
+<button>
+    <a href="/car/exportXML">Дамб В XML</a>
+</button>
+<button>
+    <a href="/car/exportYAML">Дамб В Yaml</a>
 </button>
 
 @if (session('success'))

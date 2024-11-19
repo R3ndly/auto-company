@@ -3,7 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Car;
 use Illuminate\Http\Request;
-use App\Exports\StudentExport;
+use App\Exports\CarExport;
 use Maatwebsite\Excel\Facades\Excel;
 
 class CarController extends Controller
@@ -60,19 +60,65 @@ class CarController extends Controller
 
     public function exportExcel() 
     {
-        return Excel::download(new StudentExport, 'students.xlsx');
+        return Excel::download(new CarExport, 'cars.xlsx');
     }
 
     public function exportTXT()
     {
-        $filed = "save.txt";
-        $rows = (new StudentExport())->collection();
+        $filed = "cars.txt";
+        $rows = (new CarExport())->collection();
         file_put_contents($filed, $rows);
     }
 
     public function exportCSV()
     {
-       return Excel::download(new StudentExport, 'cars.csv');
+       return Excel::download(new CarExport, 'cars.csv');
     } 
+
+    public function exportXML()
+    {
+    $fileName = 'cars.xml';
+    $rows = (new CarExport())->collection();
+
+    $xmlContent = new \SimpleXMLElement('<garages/>');
+
+    foreach ($rows as $row) {
+        $garage = $xmlContent->addChild('garage');
+        $garage->addChild('Car_code', $row->Car_code);
+        $garage->addChild('Type_failure', $row->Type_failure);
+        $garage->addChild('Type_of_spare_part', $row->Type_of_spare_part);
+        $garage->addChild('Spare_part_price', $row->Spare_part_price);
+        $garage->addChild('Repair_start_date', $row->Repair_start_date);
+        $garage->addChild('Repair_end_date', $row->Repair_end_date);
+    }
+
+    return response($xmlContent->asXML(), 200)
+        ->header('Content-Type', 'application/xml')
+        ->header('Content-Disposition', 'attachment; filename="' . $fileName . '"');
+    }
+
+    public function exportYAML()
+{
+    $fileName = 'garages.yaml';
+    $rows = (new GarageExport())->collection();
+
+    $data = [];
+    foreach ($rows as $row) {
+        $data[] = [
+            'Car_code' => $row->Car_code,
+            'Type_failure' => $row->Type_failure,
+            'Type_of_spare_part' => $row->Type_of_spare_part,
+            'Spare_part_price' => $row->Spare_part_price,
+            'Repair_start_date' => $row->Repair_start_date,
+            'Repair_end_date' => $row->Repair_end_date,
+        ];
+    }
+
+    $yamlContent = \Symfony\Component\Yaml\Yaml::dump($data);
+
+    return response($yamlContent, 200)
+        ->header('Content-Type', 'application/x-yaml')
+        ->header('Content-Disposition', 'attachment; filename="' . $fileName . '"');
+}
 
 }

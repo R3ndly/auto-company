@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('controlls', function (Blueprint $table) {
-            $table->id("Car_code");
+            $table->bigIncrements("Car_code");
             $table->string('Arrival_time');
             $table->string('Departure_time');
             $table->unsignedBigInteger('Driver_code');
@@ -22,6 +22,7 @@ return new class extends Migration
             $table->foreign('Driver_code')->references('Driver_code')->on('drivers')->onDelete('cascade');
             $table->foreign('Travel_code')->references('Travel_code')->on('travels')->onDelete('cascade');
             $table->foreign('Product_code')->references('Product_code')->on('products')->onDelete('cascade'); 
+            $table->foreign('Car_code')->references('Car_code')->on('cars')->onDelete('cascade');
         });
     }
 

@@ -4,13 +4,19 @@
 <h1>Список гаражей</h1>
 <a href="{{ route('garages.create') }}">Добавить гараж</a>
 <button>
-    <a href="/student/export">Дамб В Excel</a>
+    <a href="/garage/export">Дамб В Excel</a>
 </button>
 <button>
-    <a href="/student/exportTXT">Дамб В txt</a>
+    <a href="/garage/exportTXT">Дамб В txt</a>
 </button>
 <button>
-    <a href="/student/exportCSV">Дамб В CSV</a>
+    <a href="/garage/exportCSV">Дамб В CSV</a>
+</button>
+<button>
+    <a href="/garage/exportXML">Дамб В XML</a>
+</button>
+<button>
+    <a href="/garage/exportYAML">Дамб В Yaml</a>
 </button>
 
 @if (session('success'))

@@ -4,13 +4,19 @@
 <h1>Список</h1>
 <a href="{{ route('products.create') }}">Добавить</a>
 <button>
-    <a href="/student/export">Дамб В Excel</a>
+    <a href="/product/export">Дамб В Excel</a>
 </button>
 <button>
-    <a href="/student/exportTXT">Дамб В txt</a>
+    <a href="/product/exportTXT">Дамб В txt</a>
 </button>
 <button>
-    <a href="/student/exportCSV">Дамб В CSV</a>
+    <a href="/product/exportCSV">Дамб В CSV</a>
+</button>
+<button>
+    <a href="/product/exportXML">Дамб В XML</a>
+</button>
+<button>
+    <a href="/product/exportYAML">Дамб В Yaml</a>
 </button>
 
 @if (session('success'))

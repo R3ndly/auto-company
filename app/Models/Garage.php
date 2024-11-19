@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Garage extends Model
 {
     protected $table = 'garages';
+    protected $primaryKey = 'Car_code';
+    public $timestamps = false;
     protected $fillable = [
         'Car_code',
         'Type_failure',

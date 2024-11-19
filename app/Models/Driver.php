@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Driver extends Model
 {
     protected $table = 'drivers';
+    protected $primaryKey = 'Driver_code';
+    public $timestamps = false;
     protected $fillable = [
         'Driver_code',
         'Name',

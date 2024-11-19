@@ -3,7 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Travel;
 use Illuminate\Http\Request;
-use App\Exports\StudentExport;
+use App\Exports\TravelExport;
 use Maatwebsite\Excel\Facades\Excel;
 
 class TravelController extends Controller
@@ -54,19 +54,19 @@ class TravelController extends Controller
 
     public function exportExcel() 
     {
-        return Excel::download(new StudentExport, 'travels.xlsx');
+        return Excel::download(new TravelExport, 'travels.xlsx');
     }
 
     public function exportTXT()
     {
         $filed = "travels.txt";
-        $rows = (new StudentExport())->collection();
+        $rows = (new TravelExport())->collection();
         file_put_contents($filed, $rows);
     }
 
     public function exportCSV()
     {
-       return Excel::download(new StudentExport, 'travels.csv');
+       return Excel::download(new TravelExport, 'travels.csv');
     } 
 
 }

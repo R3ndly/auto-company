@@ -1,34 +1,34 @@
 @extends('layouts.app')
 
 @section('content')
-<h1>Добавление гаража</h1>
+<h1>Добавление</h1>
 
-<form action="{{ route('garages.store') }}" method="POST">
+<form action="{{ route('cars.store') }}" method="POST">
     @csrf
 
     <div>
-        <label for="Type_failure">Тип поломки:</label>
-        <input type="text" name="Type_failure" id="Type_failure" required>
+        <label for="Registration_number">Регистрационный номер:</label>
+        <input type="text" name="Registration_number" id="Registration_number" required>
     </div>
 
     <div>
-        <label for="Type_of_spare_part">Вид запчасти:</label>
-        <input type="text" name="Type_of_spare_part" id="Type_of_spare_part" required>
+        <label for="Car_name">Название авто:</label>
+        <input type="text" name="Car_name" id="Car_name" required>
     </div>
 
     <div>
-        <label for="Spare_part_price">Цена запчасти:</label>
-        <input type="number" name="Spare_part_price" id="Spare_part_price" required>
+        <label for="Year_manufacture_car">Год выпуска авто:</label>
+        <input type="number" name="Year_manufacture_car" id="Year_manufacture_car" required>
     </div>
 
     <div>
-        <label for="Repair_start_date">Дата начала ремонта:</label>
-        <input type="date" name="Repair_start_date" id="Repair_start_date" required>
+        <label for="Mileage">Пробег:</label>
+        <input type="number" name="Mileage" id="Mileage" required>
     </div>
 
     <div>
-        <label for="Repair_end_date">Дата конца реманта:</label>
-        <input type="date" name="Repair_end_date" id="Repair_end_date" require>
+        <label for="Category">Категория:</label>
+        <input type="text" name="Category" id="Category" require>
     </div>
 
     <button type="submit">Сохранить</button>

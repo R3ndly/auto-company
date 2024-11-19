@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Controll extends Model
 {
     protected $table = 'controlls';
+    protected $primaryKey = 'Car_code';
+    public $timestamps = false;
     protected $fillable = [
         'Car_code',
         'Arrival_time',
@@ -29,5 +31,10 @@ class Controll extends Model
     public function product()
     {
         return $this->belongsTo(Product::class, 'Product_code', 'Product_code');
+    }
+
+    public function car()
+    {
+        return $this->belongsTo(Car::class, 'Car_code', 'Car_code');
     }
 }

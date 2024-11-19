@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('garages', function (Blueprint $table) {
-            $table->id('Car_code'); 
+            $table->bigIncrements('Car_code'); 
             $table->string('Type_failure');
             $table->string('Type_of_spare_part');
             $table->integer('Spare_part_price');

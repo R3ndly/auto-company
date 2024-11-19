@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('cars', function (Blueprint $table) {
-            $table->id('Car_code');
+            $table->bigIncrements('Car_code');
             $table->string('Registration_number');
             $table->string('Car_name');
             $table->integer('Year_manufacture_car');
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('garages');
+        Schema::dropIfExists('cars');
     }
 };

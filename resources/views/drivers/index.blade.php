@@ -4,13 +4,19 @@
 <h1>Список</h1>
 <a href="{{ route('drivers.create') }}">Добавить</a>
 <button>
-    <a href="/student/export">Дамб В Excel</a>
+    <a href="/driver/export">Дамб В Excel</a>
 </button>
 <button>
-    <a href="/student/exportTXT">Дамб В txt</a>
+    <a href="/driver/exportTXT">Дамб В txt</a>
 </button>
 <button>
-    <a href="/student/exportCSV">Дамб В CSV</a>
+    <a href="/driver/exportCSV">Дамб В CSV</a>
+</button>
+<button>
+    <a href="/driver/exportXML">Дамб В XML</a>
+</button>
+<button>
+    <a href="/driver/exportYAML">Дамб В Yaml</a>
 </button>
 
 @if (session('success'))

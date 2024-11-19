@@ -3,7 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
-use App\Exports\StudentExport;
+use App\Exports\ProductExport;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ProductController extends Controller
@@ -56,19 +56,19 @@ class ProductController extends Controller
 
     public function exportExcel() 
     {
-        return Excel::download(new StudentExport, 'products.xlsx');
+        return Excel::download(new ProductExport, 'products.xlsx');
     }
 
     public function exportTXT()
     {
         $filed = "products.txt";
-        $rows = (new StudentExport())->collection();
+        $rows = (new ProductExport())->collection();
         file_put_contents($filed, $rows);
     }
 
     public function exportCSV()
     {
-       return Excel::download(new StudentExport, 'products.csv');
+       return Excel::download(new ProductExport, 'products.csv');
     } 
 
 }
