@@ -71,4 +71,46 @@ class ProductController extends Controller
        return Excel::download(new ProductExport, 'products.csv');
     } 
 
+    public function exportXML()
+    {
+    $fileName = 'products.xml';
+    $rows = (new ProductExport())->collection();
+
+    $xmlContent = new \SimpleXMLElement('<products/>');
+
+    foreach ($rows as $row) {
+        $product = $xmlContent->addChild('product');
+        $product->addChild('Product_code', $row->Product_code);
+        $product->addChild('Name_product', $row->Name_product);
+        $product->addChild('Amount_product', $row->Amount_product);
+        $product->addChild('Price_product', $row->Price_product);
+    }
+
+    return response($xmlContent->asXML(), 200)
+        ->header('Content-Type', 'application/xml')
+        ->header('Content-Disposition', 'attachment; filename="' . $fileName . '"');
+    }
+
+    public function exportYAML()
+{
+    $fileName = 'products.yaml';
+    $rows = (new ProductExport())->collection();
+
+    $data = [];
+    foreach ($rows as $row) {
+        $data[] = [
+            'Product_code' => $row->Product_code,
+            'Name_product' => $row->Name_product,
+            'Amount_product' => $row->Amount_product,
+            'Price_product' => $row->Price_product,
+        ];
+    }
+
+    $yamlContent = \Symfony\Component\Yaml\Yaml::dump($data);
+
+    return response($yamlContent, 200)
+        ->header('Content-Type', 'application/x-yaml')
+        ->header('Content-Disposition', 'attachment; filename="' . $fileName . '"');
+}
+
 }

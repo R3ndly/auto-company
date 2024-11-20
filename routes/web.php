@@ -25,7 +25,6 @@ Route::get('/about', [MainController::class, 'about'])->name('about');
 Route::get('/contact', [MainController::class, 'contact'])->name('contact');
 
 //Exports
-
 Route::get('/student/export', [StudentController::class, 'exportExcel']);
 Route::get('/student/exportCSV', [StudentController::class, 'exportCSV']);
 Route::get('/student/exportTXT', [StudentController::class, 'exportTXT']);
@@ -65,3 +64,6 @@ Route::get('/product/exportCSV', [ProductController::class, 'exportCSV']);
 Route::get('/product/exportTXT', [ProductController::class, 'exportTXT']);
 Route::get('/product/exportXML', [ProductController::class, 'exportXML']);
 Route::get('/product/exportYAML', [ProductController::class, 'exportYAML']);
+
+//Import
+Route::post('/upload-cars', [CarController::class, 'upload'])->name('car.upload');

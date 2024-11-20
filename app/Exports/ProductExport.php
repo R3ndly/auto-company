@@ -9,6 +9,6 @@ class ProductExport implements FromCollection
 {
     public function collection()
     {
-        return Product::select('Product_code, Name_product, Amount_product, Price_product')->get();
+        return Product::select('Product_code', 'Name_product', 'Amount_product', 'Price_product')->get();
     }
 }

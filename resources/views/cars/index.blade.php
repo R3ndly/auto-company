@@ -12,12 +12,16 @@
 <button>
     <a href="/car/exportCSV">Дамб В CSV</a>
 </button>
-<button>
-    <a href="/car/exportXML">Дамб В XML</a>
-</button>
+
 <button>
     <a href="/car/exportYAML">Дамб В Yaml</a>
 </button>
+<form action="{{ route('car.upload') }}" method="POST" enctype="multipart/form-data">
+    @csrf
+    <input type="file" name="file" accept=".xlsx,.csv,.txt,.xml,.yaml" required>
+    <button type="submit">Загрузить данные</button>
+</form>
+
 
 @if (session('success'))
     <div>{{ session('success') }}</div>

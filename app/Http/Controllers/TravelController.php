@@ -69,4 +69,44 @@ class TravelController extends Controller
        return Excel::download(new TravelExport, 'travels.csv');
     } 
 
+    public function exportXML()
+    {
+    $fileName = 'travels.xml';
+    $rows = (new TravelExport())->collection();
+
+    $xmlContent = new \SimpleXMLElement('<travels/>');
+
+    foreach ($rows as $row) {
+        $travel = $xmlContent->addChild('travel');
+        $travel->addChild('Travel_code', $row->Travel_code);
+        $travel->addChild('Destination', $row->Destination);
+        $travel->addChild('Distance_km', $row->Distance_km);
+    }
+
+    return response($xmlContent->asXML(), 200)
+        ->header('Content-Type', 'application/xml')
+        ->header('Content-Disposition', 'attachment; filename="' . $fileName . '"');
+    }
+
+    public function exportYAML()
+{
+    $fileName = 'travels.yaml';
+    $rows = (new TravelExport())->collection();
+
+    $data = [];
+    foreach ($rows as $row) {
+        $data[] = [
+            'Travel_code' => $row->Travel_code,
+            'Destination' => $row->Destination,
+            'Distance_km' => $row->Distance_km,
+        ];
+    }
+
+    $yamlContent = \Symfony\Component\Yaml\Yaml::dump($data);
+
+    return response($yamlContent, 200)
+        ->header('Content-Type', 'application/x-yaml')
+        ->header('Content-Disposition', 'attachment; filename="' . $fileName . '"');
+}
+
 }

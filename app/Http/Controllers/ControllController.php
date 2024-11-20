@@ -75,4 +75,50 @@ class ControllController extends Controller
        return Excel::download(new ControllExport, 'controlls.csv');
     } 
 
+    public function exportXML()
+    {
+    $fileName = 'controlls.xml';
+    $rows = (new ControllExport())->collection();
+
+    $xmlContent = new \SimpleXMLElement('<controlls/>');
+
+    foreach ($rows as $row) {
+        $controll = $xmlContent->addChild('controll');
+        $controll->addChild('Car_code', $row->Car_code);
+        $controll->addChild('Arrival_time', $row->Arrival_time);
+        $controll->addChild('Departure_time', $row->Departure_time);
+        $controll->addChild('Driver_code', $row->Driver_code);
+        $controll->addChild('Travel_code', $row->Travel_code);
+        $controll->addChild('Product_code', $row->Product_code);
+    }
+
+    return response($xmlContent->asXML(), 200)
+        ->header('Content-Type', 'application/xml')
+        ->header('Content-Disposition', 'attachment; filename="' . $fileName . '"');
+    }
+
+    public function exportYAML()
+{
+    $fileName = 'controlls.yaml';
+    $rows = (new ControllExport())->collection();
+
+    $data = [];
+    foreach ($rows as $row) {
+        $data[] = [
+            'Car_code' => $row->Car_code,
+            'Arrival_time' => $row->Arrival_time,
+            'Departure_time' => $row->Departure_time,
+            'Driver_code' => $row->Driver_code,
+            'Travel_code' => $row->Travel_code,
+            'Product_code' => $row->Product_code,
+        ];
+    }
+
+    $yamlContent = \Symfony\Component\Yaml\Yaml::dump($data);
+
+    return response($yamlContent, 200)
+        ->header('Content-Type', 'application/x-yaml')
+        ->header('Content-Disposition', 'attachment; filename="' . $fileName . '"');
+}
+
 }

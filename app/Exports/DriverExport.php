@@ -9,6 +9,6 @@ class DriverExport implements FromCollection
 {
     public function collection()
     {
-        return Driver::select('Driver_code, Name, Experience, Number_passport, Place_residence, Phone')->get();
+        return Driver::select('Driver_code', 'Name', 'Experience', 'Number_passport', 'Place_residence', 'Phone')->get();
     }
 }

@@ -9,6 +9,6 @@ class CarExport implements FromCollection
 {
     public function collection()
     {
-        return Car::select('Car_code, Registration_number, Car_name, Year_manufacture_car, Mileage, Category')->get();
+        return Car::select('Car_code', 'Registration_number', 'Car_name', 'Year_manufacture_car', 'Mileage', 'Category')->get();
     }
 }

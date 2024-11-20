@@ -9,6 +9,6 @@ class TravelExport implements FromCollection
 {
     public function collection()
     {
-        return Travel::select('Travel_code, Destination, Distance_km')->get();
+        return Travel::select('Travel_code', 'Destination', 'Distance_km')->get();
     }
 }
